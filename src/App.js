@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 function App() {
 
-const [click, setClick] = useState(true);
+const [click, setClick] = useState(true); // click adında bir state oluşturduk ve true olarak başlattık
 
 
   async function getAdvice() {
