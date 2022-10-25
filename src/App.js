@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import Advice from "./Advice";
 
 function App() {
-  const [click, setClick] = useState(true); // click adında bir state oluşturduk ve true olarak başlattık
-  const [advice, setAdvice] = useState(); // advice adında bir state oluşturduk ve boş bir obje olarak başlattık
-
+  // click adında bir state oluşturduk ve true olarak başlattık useState şu işe yarıyor: bir state oluşturmak ve bu state'in ilk değerini belirlemek için kullanılır.
+  const [click, setClick] = useState(true); 
+  const [advice, setAdvice] = useState([]); 
+  // advice adında bir state oluşturduk ve boş bir obje olarak başlattık
   async function getAdvice() {
     try {
       const response = await axios.get("https://api.adviceslip.com/advice"); // await: bu fonk. bir yanıt verene kadar bekle, yanıt geldiği zaman bu değişkeni oluştur
@@ -20,15 +21,11 @@ function App() {
     getAdvice();
   }, [click]); // dependecy'nin içi boşsa sadece ilk renderda çalışır, içine bir şey yazarsak o değiştiğinde çalışır.
 
-  const clickHandler = () => {
-    setClick(!click); // click'i tersine çevir
-  };
 
   return (
     <div className="App">
       <h1 className="text-3xl font-bold underline">
-        <Advice />
-        <button onClick={() => clickHandler()}>PUSH</button>
+        <Advice advice={advice} setClick={setClick}/>
       </h1>
     </div>
   );
