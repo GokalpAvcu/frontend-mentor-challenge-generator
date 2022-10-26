@@ -4,8 +4,8 @@ import Advice from "./Advice";
 
 function App() {
   // click adında bir state oluşturduk ve true olarak başlattık useState şu işe yarıyor: bir state oluşturmak ve bu state'in ilk değerini belirlemek için kullanılır.
-  const [click, setClick] = useState(true); 
-  const [advice, setAdvice] = useState({}); 
+  const [click, setClick] = useState(true);
+  const [advice, setAdvice] = useState({});
   // advice adında bir state oluşturduk ve boş bir obje olarak başlattık
 
   async function getAdvice() {
@@ -23,11 +23,11 @@ function App() {
     getAdvice();
   }, [click]); // dependecy'nin içi boşsa sadece ilk renderda çalışır, içine bir şey yazarsak o değiştiğinde çalışır.
 
-
   return (
     <div className="App">
       <h1 className="text-3xl font-bold underline">
-        <Advice advice={advice} setClick={setClick}/>
+        {advice ? <Advice advice={advice} setClick={setClick} /> : null}
+        {/* advice state'i varsa Advice componentini render et, boşsa null döndür */}
       </h1>
     </div>
   );
